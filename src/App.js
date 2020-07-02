@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './component/Navbar/NavBar'
 import Banner from './component/Banner/Banner';
+import ExpList from './component/Experience/ExpList';
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
         <NavBar></NavBar>
         <Switch>
         <Route exact path="/" component={Banner}></Route>
+        <Route exact path="/" component={ExpList}></Route>
+      
         </Switch>
       </>
     </Router>

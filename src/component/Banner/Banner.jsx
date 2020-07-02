@@ -1,23 +1,29 @@
 import React from 'react';
-import { Jumbotron, Button,Container } from 'react-bootstrap'
+import { Jumbotron, Button, Container } from 'react-bootstrap'
+import ExpList from '../Experience/ExpList'
 
 function Banner(props) {
     return (
         <>
             <Jumbotron>
-                <Container>
+                <div className="jumbotron-background-img">
 
-               
-                <h1>Hello, world!</h1>
-                <p>
-                    This is a simple hero unit, a simple jumbotron-style component for calling
-                    extra attention to featured content or information.
+
+                    <Container>
+
+                        <div className="jumbotron-content">
+
+                            <h1>Online Experiences</h1>
+                            <p>
+                                Unique activities to do from home, including cooking experiences with world-renowned chefs
   </p>
-                <p>
-                    <Button variant="primary">Learn more</Button>
-                </p>
-                </Container>
+
+                        </div>
+
+                    </Container>
+                </div>
             </Jumbotron>
+            <ExpList></ExpList>
         </>
     );
 }

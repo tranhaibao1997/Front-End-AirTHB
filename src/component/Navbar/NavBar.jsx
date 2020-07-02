@@ -18,7 +18,7 @@ function NavBar(props) {
                             <Nav.Link href="#deets">Host your home</Nav.Link>
                             <Nav.Link href="#deets">Host an experience</Nav.Link>
                             <Nav.Link href="#deets">Help</Nav.Link>
-                            <Nav.Link href="#deets">Log In</Nav.Link>
+                            <Nav.Link href="#deets" style={{marginRight:"10px"}}>Log In</Nav.Link>
                             <Button variant="light">Sign Up</Button>
 
                         </Nav>
