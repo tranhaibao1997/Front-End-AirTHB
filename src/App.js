@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './component/Navbar/NavBar'
 import Banner from './component/Banner/Banner';
 import ExpList from './component/Experience/ExpList';
+import Footer from './component/Footer/Footer';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route exact path="/" component={ExpList}></Route>
       
         </Switch>
+        <Footer></Footer>
       </>
     </Router>
 

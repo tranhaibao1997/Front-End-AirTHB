@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Button, Container } from 'react-bootstrap'
+import { Jumbotron, Button, Container, Row, Col } from 'react-bootstrap'
 import ExpList from '../Experience/ExpList'
 
 function Banner(props) {
@@ -11,14 +11,23 @@ function Banner(props) {
 
                     <Container>
 
-                        <div className="jumbotron-content">
 
-                            <h1>Online Experiences</h1>
-                            <p>
-                                Unique activities to do from home, including cooking experiences with world-renowned chefs
+                        <Row>
+                            <Col lg={4}>
+                                <div className="jumbotron-content">
+                                <h1 style={{fontSize:"80px"}}>Online Experiences</h1>
+                                <p style={{fontSize:"24px"}}>
+                                    Unique activities to do from home, including cooking experiences with world-renowned chefs
   </p>
+                                </div>
+                 
+                            </Col>
+                            <Col lg={9}>
+                            </Col>
+                        </Row>
 
-                        </div>
+
+
 
                     </Container>
                 </div>
