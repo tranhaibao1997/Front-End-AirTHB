@@ -3,12 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import StoreProvider from './ThemeContext'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+ReactDOM.render( <
+    StoreProvider >
+    <
+    React.StrictMode >
+    <
+    App / >
+    <
+    /React.StrictMode> <
+    /StoreProvider>,
+    document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

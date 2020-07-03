@@ -3,6 +3,7 @@ import ExpCard from "./ExpCard";
 import { Container } from "react-bootstrap";
 import Axios from "axios";
 import Slider from "react-slick";
+import { StoreContext } from "../../ThemeContext";
 
 function ExpList(props) {
   var settings = {
@@ -11,7 +12,10 @@ function ExpList(props) {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-  let [expList, setExpList] = React.useState(null);
+  // let [expList, setExpList] = React.useState(null);
+  let {
+    expList
+  } =React.useContext(StoreContext)
   React.useEffect(() => {
     getExpList();
   }, []);
@@ -21,22 +25,22 @@ function ExpList(props) {
       let res = await Axios.get(
         "https://airthb-group6.herokuapp.com/experiences"
       );
-      setExpList(res.data.data);
+      expList[1](res.data.data);
     } catch (err) {}
   }
   return (
     <>
-      {expList ? (
+      {expList[0] ? (
         <Container>
-          <div className="slider-card-list">
-            <Slider {...settings}>
+          <ul className="slider-card-list">
             
-                {expList.map((exp) => {
+            
+                {expList[0].map((exp) => {
                   return <ExpCard exp={exp}></ExpCard>;
                 })}
              
-            </Slider>
-          </div>
+            
+          </ul>
         </Container>
       ) : (
         ""

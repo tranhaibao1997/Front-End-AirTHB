@@ -2,8 +2,9 @@ import React from "react";
 import { Card } from "react-bootstrap";
 
 function ExpCard({ exp }) {
+  console.log(exp)
   return (
-    <div>
+ 
       <article className="card card--1">
         <div className="card__info-hover">
           <svg className="card__like" viewBox="0 0 24 24">
@@ -39,7 +40,7 @@ function ExpCard({ exp }) {
           <span className="card__by">From {exp.price}/person</span>
         </div>
       </article>
-    </div>
+   
   );
 }
 

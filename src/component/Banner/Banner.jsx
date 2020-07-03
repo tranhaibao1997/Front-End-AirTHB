@@ -32,7 +32,7 @@ function Banner(props) {
                     </Container>
                 </div>
             </Jumbotron>
-            <ExpList></ExpList>
+           
         </>
     );
 }

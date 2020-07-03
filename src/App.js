@@ -7,6 +7,8 @@ import NavBar from './component/Navbar/NavBar'
 import Banner from './component/Banner/Banner';
 import ExpList from './component/Experience/ExpList';
 import Footer from './component/Footer/Footer';
+import FilterTag from './component/FilterTag/FilterTag'
+import ExperiencePage from './component/ExperiencePage/ExperiencePage';
 
 function App() {
   return (
@@ -14,9 +16,10 @@ function App() {
       <>
         <NavBar></NavBar>
         <Switch>
-        <Route exact path="/" component={Banner}></Route>
-        <Route exact path="/" component={ExpList}></Route>
-      
+        {/* <Route exact path="/" component={Banner}></Route>
+        <Route exact path="/" component={FilterTag}></Route>
+        <Route exact path="/" component={ExpList}></Route> */}
+       <Route exact path="/" component={ExperiencePage}></Route> 
         </Switch>
         <Footer></Footer>
       </>

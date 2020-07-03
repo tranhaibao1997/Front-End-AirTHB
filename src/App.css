@@ -164,6 +164,12 @@ html {
 .slider-card-list {
     padding-top: 30px;
     padding-bottom: 60px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.slider-card-list article {
+    margin-bottom: 30px;
 }
 
 footer {
@@ -370,4 +376,11 @@ ul {
 
 .card {
     border-radius: 0px !important;
+    width: 30% !important;
+}
+
+.MuiButton-containedPrimary {
+    background-color: white !important;
+    color: black !important;
+    margin-right: 20px !important;
 }
