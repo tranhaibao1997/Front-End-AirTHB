@@ -9,7 +9,7 @@ import ExpList from './component/Experience/ExpList';
 import Footer from './component/Footer/Footer';
 import FilterTag from './component/FilterTag/FilterTag'
 import ExperiencePage from './component/ExperiencePage/ExperiencePage';
-
+import SingleExp from './component/SingleExp/SingleExp'
 function App() {
   return (
     <Router>
@@ -20,6 +20,7 @@ function App() {
         <Route exact path="/" component={FilterTag}></Route>
         <Route exact path="/" component={ExpList}></Route> */}
        <Route exact path="/" component={ExperiencePage}></Route> 
+       <Route exact path="/experiences/:expId" component={SingleExp}></Route>
         </Switch>
         <Footer></Footer>
       </>

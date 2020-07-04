@@ -7,6 +7,7 @@ export const StoreContext = React.createContext(null);
 export default ({ children }) => {
     // các em đã vào nhà kho
     const [expList, setExpList] = useState(null)
+    const [currentPage,setCurrentPage]=useState(1)
 
 
 
@@ -14,7 +15,8 @@ export default ({ children }) => {
 
 
     const store = {
-        expList: [expList, setExpList]
+        expList: [expList, setExpList],
+        currentPage:[currentPage,setCurrentPage]
 
     };
 

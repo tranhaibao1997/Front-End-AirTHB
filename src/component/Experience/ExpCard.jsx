@@ -1,11 +1,13 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function ExpCard({ exp }) {
   console.log(exp)
   return (
  
-      <article className="card card--1">
+  <article className="card card--1">
+    <Link to={`/experience/${exp.id}`}>
         <div className="card__info-hover">
           <svg className="card__like" viewBox="0 0 24 24">
             <path
@@ -39,8 +41,11 @@ function ExpCard({ exp }) {
           <h3 className="card__title">{exp.title}</h3>
           <span className="card__by">From {exp.price}/person</span>
         </div>
+        </Link>
       </article>
    
+ 
+     
   );
 }
 
