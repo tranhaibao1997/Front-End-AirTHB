@@ -53,15 +53,16 @@ function FilterTag(props) {
         </PopupState>
         <FilterByPrice></FilterByPrice>
       </div>
-      {
-          expList[0] ?  <Pagination
+      {expList[0] ? (
+        <Pagination
           currentPage={currentPage[0]}
           totalPages={expList[0].length / 10}
           changeCurrentPage={changePage}
           theme="square-fill"
-        /> :""
-      }
-    
+        />
+      ) : (
+        ""
+      )}
     </Container>
   );
 }
