@@ -1,62 +1,45 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import sampleData from "../../sampleData.json";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import StackGrid, { transitions } from "react-stack-grid";
+import Axios from "axios";
 
 const { scaleDown } = transitions;
 
 export default function SingleExp() {
   let { expId } = useParams();
+  // let exp = sampleData.find((e) => e.id === expId);
 
-  let exp = sampleData.find((e) => e.id === expId);
+  const [singleExp, setSingleExp] = useState(null)
+
+  const getExperience = async () => {
+    let url = `https://airthb-group6.herokuapp.com/experiences/${expId}`
+    let data = await Axios.get(url)
+    let result = await data.data
+    setSingleExp(result.data)
+  }
+
+  useEffect(() => {
+    getExperience()
+  }, [])
+
+  if(singleExp === null){
+    return <div><Spinner animation="border" /></div>
+  }
 
   return (
     <div>
       <div className="section1">
         <Container style={{ padding: "50px 0 0 0" }}>
-          <StackGrid
-            className="top-section"
-            columnWidth={340}
-            duration={0}
-            gutterWidth={10}
-          >
+          <StackGrid className="top-section" columnWidth={340} duration={0} gutterWidth={10}>
+            <div><img alt="" src={singleExp.pictureURL[0]} width="340" height="460" ></img></div>
             <div>
-              <img
-                alt=""
-                src="https://a0.muscache.com/im/pictures/e44bf8b0-fd8d-4c59-9cf7-a95e59a28eef.jpg?aki_policy=exp_md"
-                width="340"
-                height="460"
-              ></img>
+              <img alt="" src={singleExp.pictureURL[1]} width="165" height="230" style={{marginRight:"5px"}}></img>
+              <img alt="" src={singleExp.pictureURL[2]} width="165" height="230" style={{marginLeft:"5px"}}></img>
+              <img alt="" src={singleExp.pictureURL[3]} width="340" height="220" style={{marginTop:"10px"}}></img>
             </div>
-            <div>
-              <img
-                alt=""
-                src="https://a0.muscache.com/im/pictures/20079fcb-b06b-4153-82c7-5b36062a40ed.jpg?aki_policy=exp_md"
-                width="170"
-                height="230"
-              ></img>
-              <img
-                alt=""
-                src="https://a0.muscache.com/im/pictures/27e3fd70-192a-49c2-95c3-4f0aa530495d.jpg?aki_policy=exp_md"
-                width="170"
-                height="230"
-              ></img>
-              <img
-                alt=""
-                src="https://a0.muscache.com/im/pictures/ecdcdafa-359f-4473-856c-6433ca66f17b.jpg?aki_policy=exp_md"
-                width="340"
-                height="230"
-              ></img>
-            </div>
-            <div>
-              <img
-                alt=""
-                src="https://a0.muscache.com/im/pictures/f1a10d6f-8610-457b-a665-de4353bddcab.jpg?aki_policy=exp_md"
-                width="340"
-                height="460"
-              ></img>
-            </div>
+            <div><img alt="" src={singleExp.pictureURL[4]} width="340" height="460"></img></div>
           </StackGrid>
           <Row className="bottom-section">
             <Col className="left-column" sm={4}>
@@ -66,22 +49,15 @@ export default function SingleExp() {
                 </div>
                 <div>ONLINE EXPERIENCE</div>
               </div>
-              <h1 style={{ marginTop: "10px" }} className="title">
-                The Secrets of Vietnamese Egg Coffee
-              </h1>
-              <div style={{ marginTop: "10px" }} className="country">
-                Ho Chi Minh City, Vietnam
-              </div>
+              <h1 style={{ marginTop: "10px" }} className="title">{singleExp.title}</h1>
+              <div style={{ marginTop: "10px" }} className="country">{singleExp.country}</div>
               <div style={{ marginTop: "10px" }} className="rating">
                 <div style={{ marginRight: "10px" }}>5.0</div>
-                <div>
-                  <i class="fas fa-star"></i>
-                </div>
+                <div><i class="fas fa-star"></i></div>
               </div>
-              <div style={{ display: "flex" }}>
-                <div className="tags">COFFEE</div>
-                <div className="tags">CLASS</div>
-              </div>
+              <div style={{ display: "flex" }}>{singleExp.tags.map(item => (
+                <div className="tags">{item.tag}</div>
+              ))}</div>
             </Col>
             <Col className="right-column" sm={8}>
               <Row>
@@ -104,22 +80,22 @@ export default function SingleExp() {
               <Row>
                 <Col sm={7} className="bottom-section">
                   <div>
-                    <i class="far fa-clock" style={{ color: "#474747" }}></i>
+                    <i class="far fa-clock" style={{ color: "#878787" }}></i>
                     <Row style={{ margin: "3px 0 3px 0" }}></Row>
                     <div style={{ color: "#878787" }}>Duration</div>
-                    <div>1 hour</div>
+                    <div>{singleExp.duration} hour</div>
                   </div>
                   <div>
                     <i
                       class="fas fa-user-friends"
-                      style={{ color: "#474747" }}
+                      style={{ color: "#878787" }}
                     ></i>
                     <Row style={{ margin: "3px 0 3px 0" }}></Row>
                     <div style={{ color: "#878787" }}>Group Size</div>
-                    <div>Up to 10 people</div>
+                    <div>Up to {singleExp.groupS} people</div>
                   </div>
                   <div>
-                    <i class="far fa-comments" style={{ color: "#474747" }}></i>
+                    <i class="far fa-comments" style={{ color: "#878787" }}></i>
                     <Row style={{ margin: "3px 0 3px 0" }}></Row>
                     <div style={{ color: "#878787" }}>Hosted in</div>
                     <div>English</div>
@@ -138,36 +114,7 @@ export default function SingleExp() {
               <h2 style={{ fontWeight: "bold" }}>What you'll do</h2>
             </Col>
             <Col sm={8} style={{ fontSize: "13pt" }}>
-              <p>
-                Immerse yourself in Mexico's extraordinary street food culture
-                in a guided cooking class with a chef. Learn to cook a Mexican
-                street taco—including filling, hand-made flour tortillas, and
-                salsa—with practical recipes that you can follow at home. In the
-                first half hour we will have our Welcome, Meet and Greet, Class
-                Structure and Mexican Taco Overview. In the following hour you
-                will cook step by step a delicious Taco from scratch.
-              </p>
-              <p>
-                This is an online version of our signature “Cook Tacos: Pastor,
-                Barbacoa and Campechano”
-                (https://www.airbnb.com/experiences/260795), an experience that
-                reflects the richness and variety of our tacos. We also host
-                three more experiences on Airbnb with top-rated reviews from
-                around the world: https://www.airbnb.com/users/show/58462173.{" "}
-              </p>
-              <p>
-                This experience is ideal for special occasions like
-                anniversaries and birthdays as well as for team-building events
-                at work. Is your group larger than my listed max group size for
-                private groups? Send us a message.{" "}
-              </p>
-              <p>Pricing is per person. </p>
-              <p>For more pictures and stories, please check @auramexcooking</p>
-              <p>
-                More than 200 classes and 1,500 guests. Honored that this
-                experience has been featured in Huffington Post and Washington
-                Post. Thank You!
-              </p>
+              <p>{singleExp.description}</p>
             </Col>
           </Row>
         </Container>
@@ -318,101 +265,17 @@ export default function SingleExp() {
               <h2 style={{ fontWeight: "bold" }}>What to bring</h2>
             </Col>
             <Col sm={8}>
-              <div className="right-content">
-                <span>
-                  <i
-                    style={{ fontWeight: "lighter" }}
-                    class="far fa-check-circle fa-2x"
-                  ></i>
-                </span>
-                <span style={{ width: "10px" }}></span>
-                <span
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    fontSize: "13pt",
-                  }}
-                >
-                  Computer, tablet or smartphone with a stable internet
-                  connection. Video and sound on.
-                </span>
-              </div>
-              <div className="right-content">
-                <span>
-                  <i
-                    style={{ fontWeight: "lighter" }}
-                    class="far fa-check-circle fa-2x"
-                  ></i>
-                </span>
-                <span style={{ width: "10px" }}></span>
-                <span
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    fontSize: "13pt",
-                  }}
-                >
-                  Computer, tablet or smartphone with a stable internet
-                  connection. Video and sound on.
-                </span>
-              </div>
-              <div className="right-content">
-                <span>
-                  <i
-                    style={{ fontWeight: "lighter" }}
-                    class="far fa-check-circle fa-2x"
-                  ></i>
-                </span>
-                <span style={{ width: "10px" }}></span>
-                <span
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    fontSize: "13pt",
-                  }}
-                >
-                  Computer, tablet or smartphone with a stable internet
-                  connection. Video and sound on.
-                </span>
-              </div>
-              <div className="right-content">
-                <span>
-                  <i
-                    style={{ fontWeight: "lighter" }}
-                    class="far fa-check-circle fa-2x"
-                  ></i>
-                </span>
-                <span style={{ width: "10px" }}></span>
-                <span
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    fontSize: "13pt",
-                  }}
-                >
-                  Computer, tablet or smartphone with a stable internet
-                  connection. Video and sound on.
-                </span>
-              </div>
-              <div className="right-content">
-                <span>
-                  <i
-                    style={{ fontWeight: "lighter" }}
-                    class="far fa-check-circle fa-2x"
-                  ></i>
-                </span>
-                <span style={{ width: "10px" }}></span>
-                <span
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    fontSize: "13pt",
-                  }}
-                >
-                  Computer, tablet or smartphone with a stable internet
-                  connection. Video and sound on.
-                </span>
-              </div>
+            {singleExp.items.map(item => 
+              <span style={{display: "flex",alignItems: "center",fontSize: "13pt"}}>
+                <div className="right-content">
+                  <span>
+                    <i style={{ fontWeight: "lighter" }} class="far fa-check-circle fa-2x"></i>
+                  </span>
+                  <span style={{ width: "10px" }}></span>
+                  <span>{item}</span>
+                </div>
+              </span>)
+            }
             </Col>
           </Row>
         </Container>
