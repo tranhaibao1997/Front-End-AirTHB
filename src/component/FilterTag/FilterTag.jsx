@@ -73,7 +73,7 @@ function FilterTag(props) {
       {expList[0] || dataLength!==0 ? (
         <Pagination
           currentPage={currentPage[0]}
-          totalPages={Math.round(dataLength / 10)}
+          totalPages={dataLength%10 !==0 ?Math.round(dataLength / 10)+1 :Math.round(dataLength / 10) }
           changeCurrentPage={changePage}
           theme="square-fill"
         />
