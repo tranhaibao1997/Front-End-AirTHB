@@ -8,6 +8,7 @@ export default ({ children }) => {
     // các em đã vào nhà kho
     const [expList, setExpList] = useState(null)
     const [currentPage,setCurrentPage]=useState(1)
+    const [dataLength,setDataLength]=useState(1)
 
 
 
@@ -16,7 +17,8 @@ export default ({ children }) => {
 
     const store = {
         expList: [expList, setExpList],
-        currentPage:[currentPage,setCurrentPage]
+        currentPage:[currentPage,setCurrentPage],
+        dataLength:[dataLength,setDataLength]
 
     };
 

@@ -14,7 +14,7 @@ function ExpList(props) {
   };
   // let [expList, setExpList] = React.useState(null);
   let {
-    expList
+    expList,dataLength
   } =React.useContext(StoreContext)
   React.useEffect(() => {
     getExpList();
@@ -26,6 +26,7 @@ function ExpList(props) {
         "https://airthb-group6.herokuapp.com/experiences"
       );
       expList[1](res.data.data);
+      dataLength[1](res.data.dataLength)
     } catch (err) {}
   }
   return (

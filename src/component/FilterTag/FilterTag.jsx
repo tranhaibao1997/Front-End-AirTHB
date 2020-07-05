@@ -13,13 +13,30 @@ import { StoreContext } from "../../ThemeContext";
 import Axios from "axios";
 
 function FilterTag(props) {
+  let [dataLength,setDataLength]=React.useState(0)
   let { currentPage, expList } = React.useContext(StoreContext);
+  async function getExpList() {
+    try {
+      let res = await Axios.get(
+        "https://airthb-group6.herokuapp.com/experiences"
+      );
+      setDataLength(res.data.dataLength);
+    } catch (err) {}
+  }
+  React.useEffect(() => {
+    getExpList()
+    return () => {
+      
+    }
+  }, [])
+
   let changePage = async (numPage) => {
     // page[1](numPage);
     currentPage[1](numPage);
     let res = await Axios.get(
-      `https://airthb-group6.herokuapp.com/experiences/?page=${numPage}`
+      `https://airthb-group6.herokuapp.com/experiences?page=${numPage}`
     );
+    console.log(res.data, "CHANGE PAGEEEEEEE");
     expList[1](res.data.data);
 
     // getDataFromAPI(numPage);
@@ -53,10 +70,10 @@ function FilterTag(props) {
         </PopupState>
         <FilterByPrice></FilterByPrice>
       </div>
-      {expList[0] ? (
+      {expList[0] || dataLength!==0 ? (
         <Pagination
           currentPage={currentPage[0]}
-          totalPages={expList[0].length / 10}
+          totalPages={Math.round(dataLength / 10)}
           changeCurrentPage={changePage}
           theme="square-fill"
         />
