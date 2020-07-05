@@ -21,7 +21,7 @@ function valuetext(value) {
   return `${value}°C`;
 }
 function FilterByPrice(props) {
-  let { expList } = React.useContext(StoreContext);
+  let { expList,currentPage } = React.useContext(StoreContext);
   const classes = useStyles();
   const [value, setValue] = React.useState([0, 100]);
 
@@ -31,6 +31,7 @@ function FilterByPrice(props) {
       `https://airthb-group6.herokuapp.com/experiences/?price[$gt]=${value[0]}&price[$lt]=${value[1]}`
     );
     expList[1](res.data.data);
+    currentPage[1](1)
   };
   return (
     <PopupState variant="popover" popupId="demo-popup-menu">
