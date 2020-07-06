@@ -14,16 +14,17 @@ function ExpList(props) {
   };
   // let [expList, setExpList] = React.useState(null);
   let {
-    expList,dataLength
+    expList,dataLength,currentPage
   } =React.useContext(StoreContext)
   React.useEffect(() => {
     getExpList();
+    
   }, []);
 
   async function getExpList() {
     try {
       let res = await Axios.get(
-        "https://airthb-group6.herokuapp.com/experiences"
+        `https://airthb-group6.herokuapp.com/experiences?page=${currentPage[0]}`
       );
       expList[1](res.data.data);
       dataLength[1](res.data.dataLength)
