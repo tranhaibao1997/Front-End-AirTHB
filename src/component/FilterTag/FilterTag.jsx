@@ -14,13 +14,15 @@ import Axios from "axios";
 
 function FilterTag(props) {
   let [dataLength,setDataLength]=React.useState(0)
-  let { currentPage, expList } = React.useContext(StoreContext);
+  let { currentPage, expList,expListURL} = React.useContext(StoreContext);
   async function getExpList() {
     try {
       let res = await Axios.get(
-        "https://airthb-group6.herokuapp.com/experiences"
+      expListURL
       );
+      console.log(expListURL,"THIS IS URL")
       setDataLength(res.data.dataLength);
+      
     } catch (err) {}
   }
   React.useEffect(() => {
@@ -28,13 +30,14 @@ function FilterTag(props) {
     return () => {
       
     }
-  }, [])
+  }, [expListURL])
+  console.log(dataLength)
 
   let changePage = async (numPage) => {
     // page[1](numPage);
     currentPage[1](numPage);
     let res = await Axios.get(
-      `https://airthb-group6.herokuapp.com/experiences?page=${numPage}`
+      expListURL
     );
     console.log(res.data, "CHANGE PAGEEEEEEE");
     expList[1](res.data.data);
