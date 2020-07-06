@@ -3,7 +3,6 @@ import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function ExpCard({ exp }) {
-  console.log(exp);
   return (
     <article className="card card--1">
       <Link to={`/experiences/${exp.id}`}>

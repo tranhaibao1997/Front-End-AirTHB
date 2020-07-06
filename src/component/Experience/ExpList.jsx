@@ -14,39 +14,41 @@ function ExpList(props) {
   };
   // let [expList, setExpList] = React.useState(null);
   let {
-    expList,dataLength,currentPage
-  } =React.useContext(StoreContext)
+    expList, dataLength, currentPage, expListURL
+  } = React.useContext(StoreContext)
   React.useEffect(() => {
     getExpList();
-    
+
   }, []);
 
   async function getExpList() {
     try {
       let res = await Axios.get(
-        `https://airthb-group6.herokuapp.com/experiences?page=${currentPage[0]}`
+        expListURL
       );
       expList[1](res.data.data);
       dataLength[1](res.data.dataLength)
-    } catch (err) {}
+    } catch (err) { }
   }
   return (
     <>
       {expList[0] ? (
         <Container>
+          <h3>Number Of Items: {expList[0].length}</h3>
           <ul className="slider-card-list">
-            
-            
-                {expList[0].map((exp) => {
-                  return <ExpCard exp={exp}></ExpCard>;
-                })}
-             
-            
+      
+
+
+            {expList[0].map((exp) => {
+              return <ExpCard exp={exp}></ExpCard>;
+            })}
+
+
           </ul>
         </Container>
       ) : (
-        ""
-      )}
+          ""
+        )}
     </>
   );
 }

@@ -21,14 +21,16 @@ function valuetext(value) {
   return `${value}°C`;
 }
 function FilterByPrice(props) {
-  let { expList,currentPage } = React.useContext(StoreContext);
+  let { expList, expListURL, currentPage, minPrice, maxPrice } = React.useContext(StoreContext);
   const classes = useStyles();
   const [value, setValue] = React.useState([0, 100]);
 
   const handleChange = async (event, newValue) => {
     setValue(newValue);
+    minPrice[1](newValue[0])
+    maxPrice[1](newValue[1])
     let res = await Axios.get(
-      `https://airthb-group6.herokuapp.com/experiences/?price[$gt]=${value[0]}&price[$lt]=${value[1]}`
+      expListURL
     );
     expList[1](res.data.data);
     currentPage[1](1)
