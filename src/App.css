@@ -525,6 +525,15 @@ p {
   cursor: pointer;
   text-decoration: underline;
 }
+
+.update-delete-button{
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 10pt;
+  font-weight: 700;
+  margin-left: 10px
+}
 /*END END END END END END END END END END END END*/
 a {
   color: black;

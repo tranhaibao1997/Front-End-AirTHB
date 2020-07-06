@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import sampleData from "../../sampleData.json";
-import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
+import { Container, Row, Col, Button, Spinner} from "react-bootstrap";
 import StackGrid, { transitions } from "react-stack-grid";
 import Axios from "axios";
+
+import UpdateExp from '../UpdateExp/UpdateExp'
+
 import { useHistory } from "react-router-dom";
 import { StoreContext } from "../../ThemeContext";
-
 
 const { scaleDown } = transitions;
 
@@ -46,7 +48,9 @@ export default function SingleExp() {
       <div className="section1">
         <Container style={{ padding: "50px 0 0 0" }}>
           <StackGrid className="top-section" columnWidth={340} duration={0} gutterWidth={10}>
-            <div><img alt="" src={singleExp.pictureURL[0]} width="340" height="460" ></img></div>
+            <div>
+              <img alt="" src={singleExp.pictureURL[0]} width="340" height="460" ></img>
+            </div>
             <div>
               <img alt="" src={singleExp.pictureURL[1]} width="165" height="230" style={{ marginRight: "5px" }}></img>
               <img alt="" src={singleExp.pictureURL[2]} width="165" height="230" style={{ marginLeft: "5px" }}></img>
@@ -56,11 +60,15 @@ export default function SingleExp() {
           </StackGrid>
           <Row className="bottom-section">
             <Col className="left-column" sm={4}>
-              <div className="online-experience">
-                <div>
-                  <i class="fas fa-caret-right"></i>
+              <div style={{display: "flex", justifyContent:"space-between"}}>
+                <div className="online-experience">
+                  <div><i class="fas fa-caret-right"></i></div>
+                  <div>ONLINE EXPERIENCE</div>
                 </div>
-                <div>ONLINE EXPERIENCE</div>
+                <div style={{display: "flex"}}>
+                  <button className="update-delete-button">Update</button>
+                  <button className="update-delete-button">Delete</button>
+                </div>
               </div>
               <h1 style={{ marginTop: "10px" }} className="title">{singleExp.title}</h1>
               <div style={{ marginTop: "10px" }} className="country">{singleExp.country}</div>
