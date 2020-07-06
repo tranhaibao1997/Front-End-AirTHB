@@ -3,6 +3,7 @@ import { Form, Col, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Axios from "axios";
 import { useHistory } from "react-router-dom";
+import {Container} from 'react-bootstrap'
 
 export default function UpdateExp() {
   let { expId } = useParams();
@@ -91,7 +92,8 @@ export default function UpdateExp() {
 
   return (
     <>
-      <Form
+    <Container>
+    <Form
         className="FormCreate"
         onSubmit={(e) => {
           updateSingleExp(e);
@@ -224,6 +226,8 @@ export default function UpdateExp() {
           Submit
         </Button>
       </Form>
+    </Container>
+     
     </>
   );
 }

@@ -44,7 +44,7 @@ export default function SingleExp() {
   }
 
   return (
-    <div>
+    <div  style={{paddingTop:"90px"}}>
       <div className="section1">
         <Container style={{ padding: "50px 0 0 0" }}>
           <StackGrid className="top-section" columnWidth={340} duration={0} gutterWidth={10}>

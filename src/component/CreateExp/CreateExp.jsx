@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form, Col, Button } from "react-bootstrap";
+import { Form, Col, Button, Container } from "react-bootstrap";
 import axios from "axios";
 
 //   obj.title
@@ -67,7 +67,8 @@ function CreateExp(props) {
 
   return (
     <>
-      <Form className="FormCreate" onSubmit={createExperience}>
+    <Container style={{paddingTop:"90px"}}>
+    <Form className="FormCreate" onSubmit={createExperience}>
         <Form.Row>
           <Form.Group as={Col} controlId="formGridTitle">
             <Form.Label>Title</Form.Label>
@@ -194,6 +195,8 @@ function CreateExp(props) {
           Submit
         </Button>
       </Form>
+    </Container>
+     
     </>
   );
 }
