@@ -6,7 +6,7 @@ function ExpCard({ exp }) {
   console.log(exp);
   return (
     <article className="card card--1">
-      <Link to={`/experience/${exp.id}`}>
+      <Link to={`/experiences/${exp.id}`}>
         <div className="card__info-hover">
           <svg className="card__like" viewBox="0 0 24 24">
             <path
