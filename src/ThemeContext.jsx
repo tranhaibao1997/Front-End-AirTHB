@@ -15,8 +15,12 @@ export default ({ children }) => {
    
 
     
-
     let backEndUrlExperienceList=`https://airthb-group6.herokuapp.com/experiences?price[$gt]=${minPrice}&price[$lt]=${maxPrice}&page=${currentPage}`
+    if(tag)
+    {
+         backEndUrlExperienceList=`https://airthb-group6.herokuapp.com/experiences?price[$gt]=${minPrice}&price[$lt]=${maxPrice}&page=${currentPage}&tags=${tag}`
+    }
+    
 
 
 

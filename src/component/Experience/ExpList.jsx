@@ -34,7 +34,7 @@ function ExpList(props) {
     <>
       {expList[0] ? (
         <Container>
-          <h3>Number Of Items: {expList[0].length}</h3>
+         
           <ul className="slider-card-list">
       
 

@@ -1,24 +1,23 @@
-import React, {useState, useEffect} from 'react'
-import { Form, Col, Button } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
-import Axios from 'axios'
+import React, { useState, useEffect } from "react";
+import { Form, Col, Button } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import Axios from "axios";
+import { useHistory } from "react-router-dom";
 
 export default function UpdateExp() {
-
-  let {expId} = useParams()
-  let [form, setForm]= useState({
-    title:"",
-    tags: [],
-    duration: "",
-    country:"",
-    price: "",
-    description: "",
-    items: [],
-    age: "",
-    groupS: ""
-  })
-
-  let {title,tags,duration,country,price,description,items, age,groupS, pictureURL} = form
+  let { expId } = useParams();
+  let history = useHistory();
+  let [form, setForm] = useState({
+    // title: "",
+    // tags: [],
+    // duration: "",
+    // country: "",
+    // price: "",
+    // description: "",
+    // items: [],
+    // age: "",
+    // groupS: "",
+  });
 
   // let [title, setTitle] = useState("");
   // let [country, setCountry] = useState("");
@@ -30,14 +29,16 @@ export default function UpdateExp() {
   // let [pictureURL, setPictureURL] = useState([]);
   // let [tags, setTags] = useState([]);
   // let [items, setItems] = useState([]);
-  
-  const getSingleEx = async() => {
-    let url = `https://airthb-group6.herokuapp.com/experiences/${expId}`
-    let data = await fetch(url)
-    let result = await data.json()
+
+  const getSingleEx = async () => {
+    let url = `https://airthb-group6.herokuapp.com/experiences/${expId}`;
+    let data = await fetch(url);
+    let result = await data.json();
     setForm({
       title: result.data.title,
-      tags: result.data.tags.tag,
+      tags: result.data.tags
+        ? result.data.tags.map((elm) => elm.tag).join(",")
+        : "",
       duration: result.data.duration,
       country: result.data.country,
       price: result.data.price,
@@ -45,34 +46,64 @@ export default function UpdateExp() {
       items: result.data.items,
       age: result.data.age,
       groupS: result.data.groupS,
-    })
-    console.log(result.data)
-  }
+      pictureURL: result.data.pictureURL.join(","),
+    });
+  };
+  let {
+    title,
+    tags,
+    duration,
+    country,
+    price,
+    description,
+    items,
+    age,
+    groupS,
+    pictureURL,
+  } = form;
 
-  let updateSingleExp = async() => {
-    
-    let body=JSON.stringify(form)
-    Axios.patch(`https://airthb-group6.herokuapp.com/experiences/${expId}`,body).then((res) => console.log(res))
-    .catch((err) => console.log(err));
-  }
-  
-  console.log(tags.map(elm => elm.tag),"dfasuidgsiuadsauigduiasgduasgdfyu")
+  console.log(form, "FORM");
 
-  useEffect(()=>{
-    getSingleEx()
-  },[])
-  
+  let updateSingleExp = async (e) => {
+    e.preventDefault();
+    const response = await fetch(
+      `https://airthb-group6.herokuapp.com/experiences/${expId}`,
+      {
+        method: "PATCH", // *GET, POST, PUT, DELETE, etc.
+
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+
+        body: JSON.stringify(form), // body data type must match "Content-Type" header
+      }
+    );
+    let data = await response.json(); // parses JSON response into native JavaScript objects
+    console.log(data)
+
+     history.goBack()
+  };
+
+  useEffect(() => {
+    getSingleEx();
+  }, []);
 
   return (
     <>
-      <Form className="FormCreate" onSubmit={updateSingleExp}>
+      <Form
+        className="FormCreate"
+        onSubmit={(e) => {
+          updateSingleExp(e);
+        }}
+      >
         <Form.Row>
           <Form.Group as={Col} controlId="formGridTitle">
             <Form.Label>Title</Form.Label>
             <Form.Control
               name="title"
               value={title}
-              onChange={(e) =>  setForm({...form, title: e.target.value})}
+              onChange={(huy) => setForm({ ...form, title: huy.target.value })}
               type="text"
               placeholder="Enter Experience's title"
             />
@@ -83,7 +114,7 @@ export default function UpdateExp() {
             <Form.Control
               name="country"
               value={country}
-              onChange={(e) => setForm({...form, country: e.target.value})}
+              onChange={(e) => setForm({ ...form, country: e.target.value })}
               type="text"
               placeholder="Enter your city and country"
             />
@@ -95,7 +126,7 @@ export default function UpdateExp() {
             <Form.Control
               name="price"
               value={price}
-              onChange={(e) => setForm({...form, price: e.target.value})}
+              onChange={(e) => setForm({ ...form, price: e.target.value })}
               type="number"
               placeholder="Enter the price"
             />
@@ -106,7 +137,7 @@ export default function UpdateExp() {
             <Form.Control
               name="duration"
               value={duration}
-              onChange={(e) => setForm({...form, duration: e.target.value})}
+              onChange={(e) => setForm({ ...form, duration: e.target.value })}
               type="number"
               placeholder="Enter the time needed for your Experience"
             />
@@ -118,7 +149,7 @@ export default function UpdateExp() {
           <Form.Control
             name="description"
             value={description}
-            onChange={(e) => setForm({...form, description: e.target.value})}
+            onChange={(e) => setForm({ ...form, description: e.target.value })}
             type="text"
             placeholder="Enter a description of your Experience"
           />
@@ -132,7 +163,7 @@ export default function UpdateExp() {
           <Form.Control
             name="items"
             value={items}
-            onChange={(e) => setForm({...form, items: e.target.value})}
+            onChange={(e) => setForm({ ...form, items: e.target.value })}
             type="text"
             placeholder="Enter the necessary items for participants to bring"
           />
@@ -146,12 +177,12 @@ export default function UpdateExp() {
           <Form.Control
             name="pictureURL"
             value={pictureURL}
-            onChange={(e) => setForm({...form, pictureURL: e.target.value})}
+            onChange={(e) => setForm({ ...form, pictureURL: e.target.value })}
             type="text"
             placeholder="Enter the pictures for your Experience"
           />
         </Form.Group>
-  
+
         <Form.Row>
           <Form.Group as={Col} controlId="formGridTags">
             <Form.Label>
@@ -159,8 +190,8 @@ export default function UpdateExp() {
             </Form.Label>
             <Form.Control
               name="tags"
-              // value={tags ?tags.map(elm => elm.tag).split("") :""}
-              onChange={(e) => setForm({...form, tags: e.target.value})}
+              value={tags}
+              onChange={(e) => setForm({ ...form, tags: e.target.value })}
               type="text"
               placeholder="Enter your tags"
             ></Form.Control>
@@ -172,7 +203,7 @@ export default function UpdateExp() {
             <Form.Control
               name="groupS"
               value={groupS}
-              onChange={(e) => setForm({...form, groupS: e.target.value})}
+              onChange={(e) => setForm({ ...form, groupS: e.target.value })}
               type="number"
               placeholder="Enter the maximum number of participants"
             />
@@ -183,7 +214,7 @@ export default function UpdateExp() {
             <Form.Control
               name="age"
               value={age}
-              onChange={(e) => setForm({...form, age: e.target.value})}
+              onChange={(e) => setForm({ ...form, age: e.target.value })}
               type="number"
               placeholder="Enter the minimum age of participants"
             />
@@ -194,5 +225,5 @@ export default function UpdateExp() {
         </Button>
       </Form>
     </>
-  )
+  );
 }

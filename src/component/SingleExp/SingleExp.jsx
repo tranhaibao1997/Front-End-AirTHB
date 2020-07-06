@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import sampleData from "../../sampleData.json";
 import { Container, Row, Col, Button, Spinner} from "react-bootstrap";
 import StackGrid, { transitions } from "react-stack-grid";
@@ -66,7 +66,7 @@ export default function SingleExp() {
                   <div>ONLINE EXPERIENCE</div>
                 </div>
                 <div style={{display: "flex"}}>
-                  <button className="update-delete-button">Update</button>
+                  <button className="update-delete-button"><Link style={{color:"black"}} to={`/experiences/${singleExp._id}/update`}>Update</Link></button>
                   <button className="update-delete-button">Delete</button>
                 </div>
               </div>

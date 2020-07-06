@@ -13,12 +13,14 @@ import { StoreContext } from "../../ThemeContext";
 import Axios from "axios";
 
 function FilterTag(props) {
+  
   let [dataLength,setDataLength]=React.useState(0)
   let { currentPage, expList,expListURL} = React.useContext(StoreContext);
+  let URL=expListURL
   async function getExpList() {
     try {
       let res = await Axios.get(
-      expListURL
+      URL
       );
       console.log(expListURL,"THIS IS URL")
       setDataLength(res.data.dataLength);
@@ -31,7 +33,7 @@ function FilterTag(props) {
       
     }
   }, [expListURL])
-  console.log(dataLength)
+
 
   let changePage = async (numPage) => {
     // page[1](numPage);
@@ -39,7 +41,6 @@ function FilterTag(props) {
     let res = await Axios.get(
       expListURL
     );
-    console.log(res.data, "CHANGE PAGEEEEEEE");
     expList[1](res.data.data);
 
     // getDataFromAPI(numPage);
