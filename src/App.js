@@ -11,6 +11,7 @@ import FilterTag from "./component/FilterTag/FilterTag";
 import ExperiencePage from "./component/ExperiencePage/ExperiencePage";
 import SingleExp from "./component/SingleExp/SingleExp";
 import CreateExp from "./component/CreateExp/CreateExp";
+import UpdateExp from "./component/UpdateExp/UpdateExp";
 
 function App() {
   return (
@@ -24,6 +25,11 @@ function App() {
           <Route exact path="/" component={ExperiencePage}></Route>
           <Route exact path="/experiences/create" component={CreateExp}></Route>
           <Route exact path="/experiences/:expId" component={SingleExp}></Route>
+          <Route
+            exact
+            path="/experiences/:expId/update"
+            component={UpdateExp}
+          ></Route>
         </Switch>
         <Footer></Footer>
       </>
