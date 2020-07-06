@@ -520,6 +520,11 @@ p {
 .card-section .card {
   border: none;
 }
+
+.country:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
 /*END END END END END END END END END END END END*/
 a {
   color: black;
