@@ -3,7 +3,7 @@ import { Form, Col, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Axios from "axios";
 import { useHistory } from "react-router-dom";
-import {Container} from 'react-bootstrap'
+import { Container } from "react-bootstrap";
 
 export default function UpdateExp() {
   let { expId } = useParams();
@@ -81,12 +81,13 @@ export default function UpdateExp() {
       }
     );
     let data = await response.json(); // parses JSON response into native JavaScript objects
-    console.log(data)
+    console.log(data);
 
-     history.goBack()
+    history.goBack();
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getSingleEx();
   }, []);
 

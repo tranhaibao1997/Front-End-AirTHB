@@ -40,6 +40,10 @@ function CreateExp(props) {
       .catch((err) => console.log(err));
   };
 
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+
   return (
     <>
     <Container>

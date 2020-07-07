@@ -32,10 +32,11 @@ export default function SingleExp() {
     tag[1](id);
     let res = await Axios.get(expListURL);
     expList[1](res.data.data);
-    history.goBack();
+    history.push("/")
   };
 
   useEffect(() => {
+       window.scrollTo(0, 0);
     getExperience();
   }, []);
 
