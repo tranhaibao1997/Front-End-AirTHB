@@ -18,7 +18,14 @@
 .jumbotron-content {
   color: white;
 }
-.navbar {
+.global-container
+{
+  display: flex;
+  justify-content: center;
+  padding-top:30px;
+  padding-bottom: 30px
+}
+/* .navbar {
   position: absolute !important;
   width: 100%;
   z-index: 10;
@@ -30,7 +37,7 @@
 }
 .nav-link:hover {
   color: black !important;
-}
+} */
 @import url("https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700");
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
 * {
@@ -117,6 +124,7 @@ html {
   width: 100%;
   opacity: 0;
   top: 0;
+  color: black !important;
 }
 
 .card__img--hover {
@@ -154,6 +162,7 @@ html {
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   padding: 16px 24px 24px 24px;
+  color: black !important;
 }
 
 .card__category {
@@ -191,6 +200,7 @@ html {
 .card:hover .card__info {
   background-color: transparent;
   position: relative;
+  color: black !important;
 }
 
 .card:hover .card__info-hover {
@@ -582,3 +592,4 @@ a {
 }
 
 /* Smith section */
+

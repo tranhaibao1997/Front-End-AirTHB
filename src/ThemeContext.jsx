@@ -12,6 +12,7 @@ export default ({ children }) => {
     const [tag,setTag]=useState(null)
     const [minPrice,setMinPrice]=useState(0);
     const [maxPrice,setMaxPrice]=useState(100);
+    const [token,setToken]=useState(null)
    
 
     
@@ -34,7 +35,8 @@ export default ({ children }) => {
         expListURL:backEndUrlExperienceList,
         minPrice:[minPrice,setMinPrice],
         maxPrice:[maxPrice,setMaxPrice],
-        tag:[tag,setTag]
+        tag:[tag,setTag],
+        token:[token,setToken]
 
     };
 

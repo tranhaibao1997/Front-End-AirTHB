@@ -67,7 +67,7 @@ function CreateExp(props) {
 
   return (
     <>
-    <Container style={{paddingTop:"90px"}}>
+    <Container >
     <Form className="FormCreate" onSubmit={createExperience}>
         <Form.Row>
           <Form.Group as={Col} controlId="formGridTitle">
