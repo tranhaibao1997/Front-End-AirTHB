@@ -7,7 +7,6 @@ function NavBar(props) {
 
   const goHome = (event) => {
     event.preventDefault();
-    history.push("/");
   };
 
   const createExp = (event) => {
@@ -17,10 +16,16 @@ function NavBar(props) {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        bg="dark"
+        variant="dark"
+        sticky="top"
+      >
         <Container>
           <Navbar.Brand>
-            <a onClick={(event) => goHome(event)}>
+            <a href="/">
               <img
                 src="https://cdn.iconscout.com/icon/free/png-256/airbnb-1869032-1583156.png"
                 width="50px"
@@ -32,7 +37,9 @@ function NavBar(props) {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto"></Nav>
             <Nav>
-              <Nav.Link>Host your home</Nav.Link>
+              <Nav.Link href="/">
+                Host your home
+              </Nav.Link>
               <Nav.Link onClick={(event) => createExp(event)}>
                 Host an experience
               </Nav.Link>

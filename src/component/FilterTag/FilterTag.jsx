@@ -11,7 +11,7 @@ import Pagination from "react-pagination-library";
 import "react-pagination-library/build/css/index.css";
 import { StoreContext } from "../../ThemeContext";
 import Axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 function FilterTag(props) {
   let [dataLength, setDataLength] = React.useState(0);
@@ -29,18 +29,26 @@ function FilterTag(props) {
     return () => {};
   }, [expListURL]);
 
+  React.useEffect(() => {
+    const getData = async () => {
+      let res = await Axios.get(expListURL);
+      expList[1](res.data.data);
+    };
+
+    getData();
+  }, [currentPage[0]]);
+
   let changePage = async (numPage) => {
     // page[1](numPage);
     currentPage[1](numPage);
-    let res = await Axios.get(expListURL);
-    expList[1](res.data.data);
-
     // getDataFromAPI(numPage);
 
     // props.getProductListBySearch(numPage)
     //fetch a data
     //or update a query to get data
   };
+
+  const getData = (page) => {};
   return (
     <Container>
       <div className="filter-section">
