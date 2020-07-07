@@ -12,23 +12,9 @@ import ExperiencePage from "./component/ExperiencePage/ExperiencePage";
 import SingleExp from "./component/SingleExp/SingleExp";
 import CreateExp from "./component/CreateExp/CreateExp";
 import UpdateExp from "./component/UpdateExp/UpdateExp";
-import Login from "./component/Login/Login";
-import { StoreContext } from "./ThemeContext";
-
-import Axios from 'axios'
-
 
 function App() {
-  if (localStorage.getItem("token")) {
-    Axios.defaults.headers.common["Authorization"] = localStorage.getItem("token")
-  } else {
-    delete Axios.defaults.headers.common["Authorization"]
-  }
-
-
-
   return (
-
     <Router>
       <>
         <NavBar></NavBar>
@@ -39,7 +25,6 @@ function App() {
           <Route exact path="/" component={ExperiencePage}></Route>
           <Route exact path="/experiences/create" component={CreateExp}></Route>
           <Route exact path="/experiences/:expId" component={SingleExp}></Route>
-          <Route exact path="/login" component={Login}></Route>
           <Route
             exact
             path="/experiences/:expId/update"

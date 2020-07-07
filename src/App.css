@@ -27,7 +27,7 @@
 }
 .nav-link:hover {
   color: black !important;
-} */
+}
 @import url("https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700");
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
 * {
@@ -114,7 +114,6 @@ html {
   width: 100%;
   opacity: 0;
   top: 0;
-  color: black !important;
 }
 
 .card__img--hover {
@@ -152,7 +151,6 @@ html {
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   padding: 16px 24px 24px 24px;
-  color: black !important;
 }
 
 .card__category {
@@ -190,7 +188,6 @@ html {
 .card:hover .card__info {
   background-color: transparent;
   position: relative;
-  color: black !important;
 }
 
 .card:hover .card__info-hover {
@@ -583,3 +580,12 @@ a {
 }
 
 /* Smith section */
+.pagination-style {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+/* .square-fill .is-active, .square-fill a:first-of-type, .square-fill a:last-of-type{
+  color: blue;
+} */
