@@ -5,10 +5,10 @@ import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import StackGrid, { transitions } from "react-stack-grid";
 import Axios from "axios";
 import aaa from "./image/aaa.jpg"
-import bbb from "./image/aaa.jpg"
-import ccc from "./image/aaa.jpg"
-import ddd from "./image/aaa.jpg"
-import eee from "./image/aaa.jpg"
+import bbb from "./image/bbb.jpg"
+import ccc from "./image/ccc.jpg"
+import ddd from "./image/ddd.jpg"
+import eee from "./image/eee.jpg"
 
 import UpdateExp from "../UpdateExp/UpdateExp";
 
