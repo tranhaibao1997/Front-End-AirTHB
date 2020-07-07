@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function ExpCard({ exp }) {
   return (
-    <article className="card card--1">
+    <article className="card card--1 mb-3">
       <Link to={`/experiences/${exp.id}`}>
         <div className="card__info-hover">
           <svg className="card__like" viewBox="0 0 24 24">

@@ -13,42 +13,33 @@ function ExpList(props) {
     slidesToScroll: 1,
   };
   // let [expList, setExpList] = React.useState(null);
-  let {
-    expList, dataLength, currentPage, expListURL
-  } = React.useContext(StoreContext)
+  let { expList, dataLength, currentPage, expListURL } = React.useContext(
+    StoreContext
+  );
   React.useEffect(() => {
     getExpList();
-
   }, []);
 
   async function getExpList() {
     try {
-      let res = await Axios.get(
-        expListURL
-      );
+      let res = await Axios.get(expListURL);
       expList[1](res.data.data);
-      dataLength[1](res.data.dataLength)
-    } catch (err) { }
+      dataLength[1](res.data.dataLength);
+    } catch (err) {}
   }
   return (
     <>
       {expList[0] ? (
         <Container>
-         
-          <ul className="slider-card-list">
-      
-
-
+          <ul className="slider-card-list col-md-12 d-flex flex-wrap justify-content-space-around">
             {expList[0].map((exp) => {
               return <ExpCard exp={exp}></ExpCard>;
             })}
-
-
           </ul>
         </Container>
       ) : (
-          ""
-        )}
+        ""
+      )}
     </>
   );
 }

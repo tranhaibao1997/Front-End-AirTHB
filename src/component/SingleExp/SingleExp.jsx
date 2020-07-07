@@ -32,25 +32,21 @@ export default function SingleExp() {
     tag[1](id);
     let res = await Axios.get(expListURL);
     expList[1](res.data.data);
-    history.goBack();
-  };
-
-  const deleteExp = async (id) => {
-    let res = await Axios.delete(
-      `https://airthb-group6.herokuapp.com/experiences/${id}`
-    );
-    history.goBack()
+    history.push("/")
   };
 
   useEffect(() => {
+       window.scrollTo(0, 0);
     getExperience();
   }, []);
 
   if (singleExp === null) {
     return (
-      <div>
-        <Spinner animation="border" />
-      </div>
+      <center>
+        <div>
+          <Spinner animation="border" />
+        </div>
+      </center>
     );
   }
 
@@ -122,14 +118,7 @@ export default function SingleExp() {
                       Update
                     </Link>
                   </button>
-                  <button
-                    className="update-delete-button"
-                    onClick={() => {
-                      deleteExp(singleExp._id);
-                    }}
-                  >
-                    Delete
-                  </button>
+                  <button className="update-delete-button">Delete</button>
                 </div>
               </div>
               <h1 style={{ marginTop: "10px" }} className="title">

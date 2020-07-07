@@ -2,31 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Form, Col, Button, Container } from "react-bootstrap";
 import axios from "axios";
 
-//   obj.title
-//   obj.pictureURL = [
-//     faker.image.image(),
-//     faker.image.image(),
-//     faker.image.image(),
-//     faker.image.image(),
-//     faker.image.image(),
-//   ];
-//   obj.groupS = Math.floor(Math.random() * 15);
-//   obj.duration = Math.floor(Math.random() * 10);
-//   obj.price = Math.floor(Math.random() * 100);
-//   obj.age = Math.floor(Math.random() * 25);
-//   obj.tags = await Tag.convertToObject([
-//     tags[Math.floor(Math.random() * 10)],
-//     tags[Math.floor(Math.random() * 10)],
-//   ]);
-//   obj.country = faker.address.country();
-//   obj.items = [
-//     faker.lorem.sentence(),
-//     faker.lorem.sentence(),
-//     faker.lorem.sentence(),
-//     faker.lorem.sentence(),
-//   ];
-//   obj.description = faker.lorem.paragraphs();
-
 function CreateExp(props) {
   let [title, setTitle] = useState("");
   let [country, setCountry] = useState("");
@@ -65,9 +40,13 @@ function CreateExp(props) {
       .catch((err) => console.log(err));
   };
 
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+
   return (
     <>
-    <Container >
+    <Container>
     <Form className="FormCreate" onSubmit={createExperience}>
         <Form.Row>
           <Form.Group as={Col} controlId="formGridTitle">
