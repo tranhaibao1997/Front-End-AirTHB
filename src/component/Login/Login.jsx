@@ -9,7 +9,9 @@ export default function Login() {
   let [email, setEmail] = React.useState(null);
   let [password, setPassword] = React.useState(null);
  
-
+  let { currentUser } = React.useContext(
+    StoreContext
+  );
   async function login(e) {
     e.preventDefault();
     let config = {
@@ -23,8 +25,9 @@ export default function Login() {
       body,
       config
     );
-    console.log(res.data.data.token);
+    console.log(res.data.data);
     localStorage.setItem("token", res.data.data.token);
+    currentUser[1](res.data.data.email)
   }
  
 

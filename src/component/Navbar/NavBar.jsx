@@ -2,11 +2,15 @@ import React from "react";
 import { Navbar, NavDropdown, Nav, Container, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { StoreContext } from "../../ThemeContext";
+
 import Axios from "axios";
 
 function NavBar(props) {
   let history = useHistory();
   let token = localStorage.getItem("token");
+  let { currentUser } = React.useContext(
+    StoreContext
+  );
 
   async function getCurrentUser() {
   
@@ -53,8 +57,11 @@ function NavBar(props) {
                 Host an experience
               </Nav.Link>
               <Nav.Link>Help</Nav.Link>
-              <Nav.Link style={{ marginRight: "10px" }}>Log In</Nav.Link>
-              <Button variant="dark">Sign Up</Button>
+              {
+                currentUser[0] ?<h3>Hello {currentUser}</h3> :<><Nav.Link style={{ marginRight: "10px" }}><Link style={{color:"rgba(0,0,0,.5)"}} to="/login">Log In</Link></Nav.Link>
+                <Button variant="dark">Sign Up</Button></>
+              }
+              
             </Nav>
           </Navbar.Collapse>
         </Container>
