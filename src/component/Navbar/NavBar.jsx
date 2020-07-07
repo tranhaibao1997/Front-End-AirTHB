@@ -1,9 +1,25 @@
 import React from "react";
 import { Navbar, NavDropdown, Nav, Container, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
+import { StoreContext } from "../../ThemeContext";
+
+import Axios from "axios";
 
 function NavBar(props) {
   let history = useHistory();
+  let token = localStorage.getItem("token");
+  let { currentUser } = React.useContext(
+    StoreContext
+  );
+
+  async function getCurrentUser() {
+  
+    let res = await Axios.get(
+      "https://airthb-group6.herokuapp.com/auth/me",
+     
+    );
+    console.log(res,"data");
+  }
 
   const goHome = (event) => {
     event.preventDefault();
@@ -14,6 +30,10 @@ function NavBar(props) {
     event.preventDefault();
     history.push("/experiences/create");
   };
+
+  React.useEffect(() => {
+    getCurrentUser();
+  }, []);
 
   return (
     <>
@@ -36,9 +56,14 @@ function NavBar(props) {
               <Nav.Link onClick={(event) => createExp(event)}>
                 Host an experience
               </Nav.Link>
-              <Nav.Link>Help</Nav.Link>
-              <Nav.Link style={{ marginRight: "10px" }}>Log In</Nav.Link>
-              <Button variant="light">Sign Up</Button>
+              
+              {
+                currentUser[0] ?<><p>{currentUser}</p>
+                 <Button variant="danger">Sign Out</Button>
+                </> :<><Nav.Link style={{ marginRight: "10px" }}><Link style={{color:"rgba(0,0,0,.5)"}} to="/login">Log In</Link></Nav.Link>
+                <Button variant="dark">Sign Up</Button></>
+              }
+              
             </Nav>
           </Navbar.Collapse>
         </Container>

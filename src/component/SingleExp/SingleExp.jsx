@@ -117,7 +117,14 @@ export default function SingleExp() {
                       Update
                     </Link>
                   </button>
-                  <button className="update-delete-button">Delete</button>
+                  <button
+                    className="update-delete-button"
+                    onClick={() => {
+                      deleteExp(singleExp._id);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
               <h1 style={{ marginTop: "10px" }} className="title">

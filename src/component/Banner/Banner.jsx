@@ -16,7 +16,7 @@ function Banner(props) {
                             <Col lg={4}>
                                 <div className="jumbotron-content">
                                 <h1 style={{fontSize:"80px"}}>Online Experiences</h1>
-                                <p style={{fontSize:"24px"}}>
+                                <p style={{fontSize:"24px", color:"white"}}>
                                     Unique activities to do from home, including cooking experiences with world-renowned chefs
   </p>
                                 </div>
