@@ -1,6 +1,6 @@
 import React from "react";
 import ExpCard from "./ExpCard";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import Axios from "axios";
 import Slider from "react-slick";
 import { StoreContext } from "../../ThemeContext";
@@ -30,12 +30,12 @@ function ExpList(props) {
   return (
     <>
       {expList[0] ? (
-        <Container>
-          <ul className="slider-card-list col-md-12 d-flex flex-wrap justify-content-space-around">
-            {expList[0].map((exp) => {
+        <Container >
+          <Row className="card-list">
+          {expList[0].map((exp) => {
               return <ExpCard exp={exp}></ExpCard>;
             })}
-          </ul>
+          </Row>
         </Container>
       ) : (
         ""

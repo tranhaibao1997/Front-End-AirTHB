@@ -76,6 +76,7 @@ html {
   background-image: url("https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
 }
 
+
 .card__like {
   width: 18px;
 }
@@ -133,16 +134,20 @@ html {
   margin-right: 25px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
   background-color: #fff;
-  width: 33.3%;
   position: relative;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.1);
+  outline: none !important;
 }
 
 .card:hover {
   box-shadow: 0px 30px 18px -8px rgba(0, 0, 0, 0.1);
   transform: scale(1.1, 1.1);
+}
+.card:focus
+{
+  outline: none !important;
 }
 
 .card__info {
@@ -197,6 +202,7 @@ html {
 .slider-card-list {
   padding-top: 30px;
   padding-bottom: 60px;
+  width: 100%;
   /* display: flex;
   flex-wrap: wrap; */
 }
@@ -407,10 +413,7 @@ ul {
   color: #878787;
 }
 
-.card {
-  border-radius: 0px !important;
-  width: 30% !important;
-}
+
 
 .MuiButton-containedPrimary {
   background-color: white !important;
@@ -569,7 +572,12 @@ p {
 }
 /*END END END END END END END END END END END END*/
 a {
-  color: black;
+  color: black !important;
+}
+a:hover
+{
+  color: black !important;
+  text-decoration: none !important;
 }
 
 /* Smith section */
@@ -589,3 +597,14 @@ a {
 /* .square-fill .is-active, .square-fill a:first-of-type, .square-fill a:last-of-type{
   color: blue;
 } */
+
+
+.col-md-3{
+padding: 0px !important;
+border-radius: 15px !important;
+}
+
+.card-list{
+  display: flex;
+  justify-content: space-evenly;
+}

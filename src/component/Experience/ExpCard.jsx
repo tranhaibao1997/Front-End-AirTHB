@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 function ExpCard({ exp }) {
   return (
-    <article className="card card--1 mb-3">
+    <article className="card card--1 col-12 col-md-3">
       <Link to={`/experiences/${exp.id}`}>
-        <div className="card__info-hover">
+        <div className="card__info-hover" >
           <svg className="card__like" viewBox="0 0 24 24">
             <path
               fill="#000000"
@@ -34,10 +34,10 @@ function ExpCard({ exp }) {
             }}
           />
         </a>
-        <div className="card__info">
-          <span className="card__category"> {exp.country}</span>
-          <h3 className="card__title">{exp.title}</h3>
-          <span className="card__by">From ${exp.price}/person</span>
+        <div className="card__info" >
+          <span style={{color:"black !important"}} className="card__category"> {exp.country}</span>
+          <h3 style={{color:"black !important"}} className="card__title">{exp.title}</h3>
+          <span style={{color:"black !important"}} className="card__by">From ${exp.price}/person</span>
         </div>
       </Link>
     </article>
