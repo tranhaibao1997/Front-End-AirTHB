@@ -19,11 +19,8 @@
   color: white;
 }
 .navbar {
-  position: absolute !important;
   width: 100%;
   z-index: 10;
-  top: 0;
-  left: 0;
 }
 .nav-link {
   color: white !important;
@@ -58,8 +55,8 @@
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 .create-exp-btn:hover {
- text-decoration: none !important;
- background-color: green !important;
+  text-decoration: none !important;
+  background-color: green !important;
 }
 body,
 html {
@@ -200,8 +197,8 @@ html {
 .slider-card-list {
   padding-top: 30px;
   padding-bottom: 60px;
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex;
+  flex-wrap: wrap; */
 }
 
 .slider-card-list article {
@@ -579,6 +576,16 @@ a {
 .FormCreate {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 /* Smith section */
+.pagination-style {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+/* .square-fill .is-active, .square-fill a:first-of-type, .square-fill a:last-of-type{
+  color: blue;
+} */

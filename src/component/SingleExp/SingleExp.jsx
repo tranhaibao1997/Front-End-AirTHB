@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import sampleData from "../../sampleData.json";
-import { Container, Row, Col, Button, Spinner} from "react-bootstrap";
+import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import StackGrid, { transitions } from "react-stack-grid";
 import Axios from "axios";
 
-import UpdateExp from '../UpdateExp/UpdateExp'
+import UpdateExp from "../UpdateExp/UpdateExp";
 
 import { useHistory } from "react-router-dom";
 import { StoreContext } from "../../ThemeContext";
@@ -15,70 +15,133 @@ const { scaleDown } = transitions;
 export default function SingleExp() {
   let history = useHistory();
   let { expId } = useParams();
-  let { expList,currentPage,tag,expListURL } = React.useContext(StoreContext);
+  let { expList, currentPage, tag, expListURL } = React.useContext(
+    StoreContext
+  );
   // let exp = sampleData.find((e) => e.id === expId);
 
-  const [singleExp, setSingleExp] = useState(null)
- 
+  const [singleExp, setSingleExp] = useState(null);
 
   const getExperience = async () => {
-    let url = `https://airthb-group6.herokuapp.com/experiences/${expId}`
-    let data = await Axios.get(url)
-    let result = await data.data
-    setSingleExp(result.data)
-  }
+    let url = `https://airthb-group6.herokuapp.com/experiences/${expId}`;
+    let data = await Axios.get(url);
+    let result = await data.data;
+    setSingleExp(result.data);
+  };
   const getFilteredExp = async (id) => {
-    tag[1](id)
-    let res=await Axios.get(expListURL)
-    expList[1](res.data.data)
-    history.goBack()
-    
-  }
+    tag[1](id);
+    let res = await Axios.get(expListURL);
+    expList[1](res.data.data);
+    history.goBack();
+  };
 
   useEffect(() => {
-    getExperience()
-  }, [])
+    getExperience();
+  }, []);
 
   if (singleExp === null) {
-    return <div><Spinner animation="border" /></div>
+    return (
+      <center>
+        <div>
+          <Spinner animation="border" />
+        </div>
+      </center>
+    );
   }
 
   return (
-    <div  style={{paddingTop:"90px"}}>
+    <div>
       <div className="section1">
         <Container style={{ padding: "50px 0 0 0" }}>
-          <StackGrid className="top-section" columnWidth={340} duration={0} gutterWidth={10}>
+          <StackGrid
+            className="top-section"
+            columnWidth={340}
+            duration={0}
+            gutterWidth={10}
+          >
             <div>
-              <img alt="" src={singleExp.pictureURL[0]} width="340" height="460" ></img>
+              <img
+                alt=""
+                src={singleExp.pictureURL[0]}
+                width="340"
+                height="460"
+              ></img>
             </div>
             <div>
-              <img alt="" src={singleExp.pictureURL[1]} width="165" height="230" style={{ marginRight: "5px" }}></img>
-              <img alt="" src={singleExp.pictureURL[2]} width="165" height="230" style={{ marginLeft: "5px" }}></img>
-              <img alt="" src={singleExp.pictureURL[3]} width="340" height="220" style={{ marginTop: "10px" }}></img>
+              <img
+                alt=""
+                src={singleExp.pictureURL[1]}
+                width="165"
+                height="230"
+                style={{ marginRight: "5px" }}
+              ></img>
+              <img
+                alt=""
+                src={singleExp.pictureURL[2]}
+                width="165"
+                height="230"
+                style={{ marginLeft: "5px" }}
+              ></img>
+              <img
+                alt=""
+                src={singleExp.pictureURL[3]}
+                width="340"
+                height="220"
+                style={{ marginTop: "10px" }}
+              ></img>
             </div>
-            <div><img alt="" src={singleExp.pictureURL[4]} width="340" height="460"></img></div>
+            <div>
+              <img
+                alt=""
+                src={singleExp.pictureURL[4]}
+                width="340"
+                height="460"
+              ></img>
+            </div>
           </StackGrid>
           <Row className="bottom-section">
             <Col className="left-column" sm={4}>
-              <div style={{display: "flex", justifyContent:"space-between"}}>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <div className="online-experience">
-                  <div><i class="fas fa-caret-right"></i></div>
+                  <div>
+                    <i class="fas fa-caret-right"></i>
+                  </div>
                   <div>ONLINE EXPERIENCE</div>
                 </div>
-                <div style={{display: "flex"}}>
-                  <button className="update-delete-button"><Link style={{color:"black"}} to={`/experiences/${singleExp._id}/update`}>Update</Link></button>
+                <div style={{ display: "flex" }}>
+                  <button className="update-delete-button">
+                    <Link
+                      style={{ color: "black" }}
+                      to={`/experiences/${singleExp._id}/update`}
+                    >
+                      Update
+                    </Link>
+                  </button>
                   <button className="update-delete-button">Delete</button>
                 </div>
               </div>
-              <h1 style={{ marginTop: "10px" }} className="title">{singleExp.title}</h1>
-              <div style={{ marginTop: "10px" }} className="country">{singleExp.country}</div>
+              <h1 style={{ marginTop: "10px" }} className="title">
+                {singleExp.title}
+              </h1>
+              <div style={{ marginTop: "10px" }} className="country">
+                {singleExp.country}
+              </div>
               <div style={{ marginTop: "10px" }} className="rating">
                 <div style={{ marginRight: "10px" }}>5.0</div>
-                <div><i class="fas fa-star"></i></div>
+                <div>
+                  <i class="fas fa-star"></i>
+                </div>
               </div>
-              <div style={{ display: "flex" }}>{singleExp.tags.map(item => (
-                <div onClick={() => getFilteredExp(item._id)} className="tags">{item.tag}</div>
-              ))}</div>
+              <div style={{ display: "flex" }}>
+                {singleExp.tags.map((item) => (
+                  <div
+                    onClick={() => getFilteredExp(item._id)}
+                    className="tags"
+                  >
+                    {item.tag}
+                  </div>
+                ))}
+              </div>
             </Col>
             <Col className="right-column" sm={8}>
               <Row>
@@ -286,17 +349,26 @@ export default function SingleExp() {
               <h2 style={{ fontWeight: "bold" }}>What to bring</h2>
             </Col>
             <Col sm={8}>
-              {singleExp.items.map(item =>
-                <span style={{ display: "flex", alignItems: "center", fontSize: "13pt" }}>
+              {singleExp.items.map((item) => (
+                <span
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    fontSize: "13pt",
+                  }}
+                >
                   <div className="right-content">
                     <span>
-                      <i style={{ fontWeight: "lighter" }} class="far fa-check-circle fa-2x"></i>
+                      <i
+                        style={{ fontWeight: "lighter" }}
+                        class="far fa-check-circle fa-2x"
+                      ></i>
                     </span>
                     <span style={{ width: "10px" }}></span>
                     <span>{item}</span>
                   </div>
-                </span>)
-              }
+                </span>
+              ))}
             </Col>
           </Row>
         </Container>

@@ -17,7 +17,7 @@ function NavBar(props) {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" >
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
         <Container>
           <Navbar.Brand>
             <a onClick={(event) => goHome(event)}>
@@ -43,7 +43,6 @@ function NavBar(props) {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      
     </>
   );
 }

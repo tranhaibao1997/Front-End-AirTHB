@@ -11,37 +11,28 @@ import Pagination from "react-pagination-library";
 import "react-pagination-library/build/css/index.css";
 import { StoreContext } from "../../ThemeContext";
 import Axios from "axios";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 function FilterTag(props) {
-  
-  let [dataLength,setDataLength]=React.useState(0)
-  let { currentPage, expList,expListURL} = React.useContext(StoreContext);
-  let URL=expListURL
+  let [dataLength, setDataLength] = React.useState(0);
+  let { currentPage, expList, expListURL } = React.useContext(StoreContext);
+  let URL = expListURL;
   async function getExpList() {
     try {
-      let res = await Axios.get(
-      URL
-      );
-      console.log(expListURL,"THIS IS URL")
+      let res = await Axios.get(URL);
+      console.log(expListURL, "THIS IS URL");
       setDataLength(res.data.dataLength);
-      
     } catch (err) {}
   }
   React.useEffect(() => {
-    getExpList()
-    return () => {
-      
-    }
-  }, [expListURL])
-
+    getExpList();
+    return () => {};
+  }, [expListURL]);
 
   let changePage = async (numPage) => {
     // page[1](numPage);
     currentPage[1](numPage);
-    let res = await Axios.get(
-      expListURL
-    );
+    let res = await Axios.get(expListURL);
     expList[1](res.data.data);
 
     // getDataFromAPI(numPage);
@@ -54,8 +45,8 @@ function FilterTag(props) {
     <Container>
       <div className="filter-section">
         <FilterByInterested></FilterByInterested>
-        <FilterByDates></FilterByDates>
-
+        {/* <FilterByDates></FilterByDates> */}
+        {/* 
         <PopupState variant="popover" popupId="demo-popup-menu">
           {(popupState) => (
             <React.Fragment>
@@ -72,17 +63,24 @@ function FilterTag(props) {
               </Menu>
             </React.Fragment>
           )}
-        </PopupState>
+        </PopupState> */}
         <FilterByPrice></FilterByPrice>
-        <Link to="/experiences/create" className="create-exp-btn">Create Experience</Link>
+        {/* <Link to="/experiences/create" className="create-exp-btn">Create Experience</Link> */}
       </div>
-      {expList[0] || dataLength!==0 ? (
-        <Pagination
-          currentPage={currentPage[0]}
-          totalPages={dataLength%10 !==0 ?Math.round(dataLength / 10)+1 :Math.round(dataLength / 10) }
-          changeCurrentPage={changePage}
-          theme="square-fill"
-        />
+      {expList[0] || dataLength !== 0 ? (
+        <div className="pagination-style">
+          <Pagination
+            className="pagination-class"
+            currentPage={currentPage[0]}
+            totalPages={
+              dataLength % 10 !== 0
+                ? Math.round(dataLength / 10) + 1
+                : Math.round(dataLength / 10)
+            }
+            changeCurrentPage={changePage}
+            theme="square-fill"
+          />
+        </div>
       ) : (
         ""
       )}
