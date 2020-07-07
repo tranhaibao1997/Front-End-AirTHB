@@ -4,6 +4,11 @@ import sampleData from "../../sampleData.json";
 import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import StackGrid, { transitions } from "react-stack-grid";
 import Axios from "axios";
+import aaa from "./image/aaa.jpg"
+import bbb from "./image/bbb.jpg"
+import ccc from "./image/ccc.jpg"
+import ddd from "./image/ddd.jpg"
+import eee from "./image/eee.jpg"
 
 import UpdateExp from "../UpdateExp/UpdateExp";
 
@@ -68,7 +73,7 @@ export default function SingleExp() {
             <div>
               <img
                 alt=""
-                src={singleExp.pictureURL[0]}
+                src={singleExp.pictureURL[0] ? singleExp.pictureURL[0] : aaa}
                 width="340"
                 height="460"
               ></img>
@@ -76,21 +81,21 @@ export default function SingleExp() {
             <div>
               <img
                 alt=""
-                src={singleExp.pictureURL[1]}
+                src={singleExp.pictureURL[1] ? singleExp.pictureURL[1] :bbb}
                 width="165"
                 height="230"
                 style={{ marginRight: "5px" }}
               ></img>
               <img
                 alt=""
-                src={singleExp.pictureURL[2]}
+                src={singleExp.pictureURL[2] ? singleExp.pictureURL[2] :ccc}
                 width="165"
                 height="230"
                 style={{ marginLeft: "5px" }}
               ></img>
               <img
                 alt=""
-                src={singleExp.pictureURL[3]}
+                src={singleExp.pictureURL[3] ? singleExp.pictureURL[3] :ddd}
                 width="340"
                 height="220"
                 style={{ marginTop: "10px" }}
@@ -99,7 +104,7 @@ export default function SingleExp() {
             <div>
               <img
                 alt=""
-                src={singleExp.pictureURL[4]}
+                src={singleExp.pictureURL[4] ? singleExp.pictureURL[4]  :eee}
                 width="340"
                 height="460"
               ></img>
