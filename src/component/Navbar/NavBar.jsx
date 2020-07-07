@@ -56,9 +56,11 @@ function NavBar(props) {
               <Nav.Link onClick={(event) => createExp(event)}>
                 Host an experience
               </Nav.Link>
-              <Nav.Link>Help</Nav.Link>
+              
               {
-                currentUser[0] ?<h3>Hello {currentUser}</h3> :<><Nav.Link style={{ marginRight: "10px" }}><Link style={{color:"rgba(0,0,0,.5)"}} to="/login">Log In</Link></Nav.Link>
+                currentUser[0] ?<><p>{currentUser}</p>
+                 <Button variant="danger">Sign Out</Button>
+                </> :<><Nav.Link style={{ marginRight: "10px" }}><Link style={{color:"rgba(0,0,0,.5)"}} to="/login">Log In</Link></Nav.Link>
                 <Button variant="dark">Sign Up</Button></>
               }
               
