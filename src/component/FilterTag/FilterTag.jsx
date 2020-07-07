@@ -14,14 +14,16 @@ import Axios from "axios";
 import { Link, Redirect } from "react-router-dom";
 
 function FilterTag(props) {
-  let [dataLength, setDataLength] = React.useState(0);
-  let { currentPage, expList, expListURL } = React.useContext(StoreContext);
+  // let [dataLength, setDataLength] = React.useState(0);
+  let { currentPage, expList, expListURL, dataLength } = React.useContext(
+    StoreContext
+  );
   let URL = expListURL;
   async function getExpList() {
     try {
       let res = await Axios.get(URL);
       console.log(expListURL, "THIS IS URL");
-      setDataLength(res.data.dataLength);
+      dataLength[1](res.data.dataLength);
     } catch (err) {}
   }
   React.useEffect(() => {
@@ -75,16 +77,12 @@ function FilterTag(props) {
         <FilterByPrice></FilterByPrice>
         {/* <Link to="/experiences/create" className="create-exp-btn">Create Experience</Link> */}
       </div>
-      {expList[0] || dataLength !== 0 ? (
+      {expList[0] || dataLength[0] !== 0 ? (
         <div className="pagination-style">
           <Pagination
             className="pagination-class"
             currentPage={currentPage[0]}
-            totalPages={
-              dataLength % 10 !== 0
-                ? Math.round(dataLength / 10) + 1
-                : Math.round(dataLength / 10)
-            }
+            totalPages={Math.ceil((dataLength[0] * 1) / 10)}
             changeCurrentPage={changePage}
             theme="square-fill"
           />

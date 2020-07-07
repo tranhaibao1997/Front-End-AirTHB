@@ -6,12 +6,33 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Axios from "axios";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import { StoreContext } from "../../ThemeContext";
 
 function FilterByInterested(props) {
+  let { currentPage, expList, expListURL, dataLength } = React.useContext(
+    StoreContext
+  );
   const [state, setState] = React.useState({});
+  let [tagArray, setTagArray] = React.useState([]);
+  let [tagArrayStr, setTagArrayStr] = React.useState("");
 
   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: !event.target.checked });
+    setState({ ...state, [event.target.id]: !event.target.checked });
+    let arr = [...tagArray];
+    if (event.target.checked && !arr.includes(event.target.id)) {
+      arr.push(event.target.id);
+    } else if (!event.target.checked && arr.includes(event.target.id)) {
+      arr = arr.filter((e) => e !== event.target.id);
+    }
+    console.log(arr);
+    tagArrayStr = arr.join("&tags[$in]=");
+    tagArrayStr = "tags[$in]=" + tagArrayStr;
+    if (arr.length === 0) {
+      tagArrayStr = "";
+    }
+    console.log(tagArrayStr);
+    setTagArray(arr);
+    getExpByTag();
   };
 
   let [tagList, setTagList] = React.useState(null);
@@ -28,14 +49,20 @@ function FilterByInterested(props) {
     getTag();
   }, []);
 
-  function getExpByTag(id) {
-    console.log(id);
+  async function getExpByTag() {
+    let res = await Axios.get(
+      `https://airthb-group6.herokuapp.com/experiences?${tagArrayStr}`
+    );
+    console.log(
+      `https://airthb-group6.herokuapp.com/experiences?${tagArrayStr}`
+    );
+    expList[1](res.data.data);
+    dataLength[1](res.data.dataLength);
+    console.log(res.data.dataLength);
   }
-  if(state)
-  {
+  if (state) {
     // console.log(state["0"]["checked"]);
   }
-
 
   return (
     <PopupState variant="popover" popupId="demo-popup-menu">
@@ -55,9 +82,10 @@ function FilterByInterested(props) {
                     <FormControlLabel
                       control={
                         <Checkbox
-                          checked={index}
+                          // checked={index}
                           onChange={handleChange}
                           name={elm.tag}
+                          id={elm._id}
                           color="primary"
                         />
                       }
